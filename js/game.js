@@ -11,6 +11,7 @@ var fps = 10;
 var drawInterval;
 
 var imgSprite = new Image();
+imgSprite.onload = init;
 imgSprite.src = 'images/sprite.png';
 imgSprite.addEventListener('load',init,false);
 
@@ -36,7 +37,7 @@ function draw() {
 
 function startDrawing() {
   stopDrawing();
-  drawInterval = setInterval(draw,fps);
+  drawInterval = setInterval(draw, fps);
 }
 
 function stopDrawing() {
@@ -112,43 +113,19 @@ function clearCtxVince() {
 // event functions
 
 function checkKeyDown(e) {
-  var keyID = e.keyCode || e.which;
-  if (keyID === 38 || keyID === 87) {//up arrow or w
-    vince1.isUpKey = true;
-    e.preventDefault();
-  }
-  if (keyID === 39 || keyID === 68) {//right arrow or d
-    vince1.isRightKey = true;
-    e.preventDefault();
-  }
-  if (keyID === 40 || keyID === 83) {//down arrow or s
-    vince1.isDownKey = true;
-    e.preventDefault();
-  }
-  if (keyID === 37 || keyID === 65) {//left arrow and a
-    vince1.isLeftKey = true;
-    e.preventDefault();
-  }
+  if (e.code === 'ArrowUp' || e.code === 'KeyW') vince1.isUpKey = true;
+  if (e.code === 'ArrowRight' || e.code === 'KeyD') vince1.isRightKey = true;
+  if (e.code === 'ArrowDown' || e.code === 'KeyS') vince1.isDownKey = true;
+  if (e.code === 'ArrowLeft' || e.code === 'KeyA') vince1.isLeftKey = true;
+  e.preventDefault();
 }
 
 function checkKeyUp(e) {
-  var keyID = e.keyCode || e.which;
-  if (keyID === 38 || keyID === 87) {//up arrow or w
-    vince1.isUpKey = false;
-    e.preventDefault();
-  }
-  if (keyID === 39 || keyID === 68) {//right arrow or d
-    vince1.isRightKey = false;
-    e.preventDefault();
-  }
-  if (keyID === 40 || keyID === 83) {//down arrow or s
-    vince1.isDownKey = false;
-    e.preventDefault();
-  }
-  if (keyID === 37 || keyID === 65) {//left arrow and a
-    vince1.isLeftKey = false;
-    e.preventDefault();
-  }
+  if (e.code === 'ArrowUp' || e.code === 'KeyW') vince1.isUpKey = false;
+  if (e.code === 'ArrowRight' || e.code === 'KeyD') vince1.isRightKey = false;
+  if (e.code === 'ArrowDown' || e.code === 'KeyS') vince1.isDownKey = false;
+  if (e.code === 'ArrowLeft' || e.code === 'KeyA') vince1.isLeftKey = false;
+  e.preventDefault();
 }
 
 // end of event functions
